@@ -156,14 +156,15 @@ class _FormdetailState extends State<Formdetail> {
                       salsa20Controller.text;
                 });
                 encrypt(d);
-              } else {
-                print('no permission');
-                requestStoragePermission();
+                Navigator.popAndPushNamed(context, '/MyApp');
               }
-
-              Navigator.popAndPushNamed(context, '/MyApp');
-              print(MyEncryptionDecryption.fernetkeyvalue);
+            } else {
+              print('no permission');
+              requestStoragePermission();
             }
+
+            //Navigator.popAndPushNamed(context, '/MyApp');
+            print(MyEncryptionDecryption.fernetkeyvalue);
           }),
     );
   }

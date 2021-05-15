@@ -28,13 +28,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('hasfirstseen') ?? false);
+    bool _seen = (prefs.getBool('hasfirstseen97') ?? false);
 
     if (_seen) {
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => MainApp()));
     } else {
-      await prefs.setBool('hasfirstseen', true);
+      await prefs.setBool('hasfirstseen97', true);
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => Formdetail()));
     }

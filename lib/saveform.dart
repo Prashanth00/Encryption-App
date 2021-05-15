@@ -213,14 +213,15 @@ class _SaveFormState extends State<SaveForm> {
                             //globals.firsttime = false;
                           });
                           encrypt(d);
-                        } else {
-                          print('no permission');
-                          requestStoragePermission();
+                          Navigator.popAndPushNamed(context, '/MyApp');
                         }
-
-                        Navigator.popAndPushNamed(context, '/MyApp');
-                        print(MyEncryptionDecryption.fernetkeyvalue);
+                      } else {
+                        print('no permission');
+                        requestStoragePermission();
                       }
+
+                      //Navigator.popAndPushNamed(context, '/MyApp');
+                      print(MyEncryptionDecryption.fernetkeyvalue);
                     },
                     color: Colors.blue,
                     child: Text(
