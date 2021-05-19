@@ -11,7 +11,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:math';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'Operations.dart';
 
 class Encrypt extends StatefulWidget {
@@ -37,7 +36,6 @@ class _EncryptState extends State<Encrypt> {
       List<int> encData =
           await Operations.readData('/storage/emulated/0/MyEncFolder/pass.rsa');
       print(encData);
-
       var plainData = await _decryptData(encData);
     } else {
       print('no permission');
@@ -61,7 +59,6 @@ class _EncryptState extends State<Encrypt> {
   _decryptData(encData) async {
     final publicPem = await rootBundle.loadString('assets/public.pem');
     final publicKey = RSAKeyParser().parse(publicPem) as RSAPublicKey;
-
     final privatePem = await rootBundle.loadString('assets/private.pem');
     final privKey = RSAKeyParser().parse(privatePem) as RSAPrivateKey;
     final rsaencrypter =
@@ -136,7 +133,6 @@ class _EncryptState extends State<Encrypt> {
 
     String p1 = await Operations.writeData(
         totalencryptedtext.bytes, dir.path + '/$filename.aes');
-    print("Encrypted and written successully");
     Fluttertoast.showToast(msg: 'Encrypted and stored successfully');
   }
 

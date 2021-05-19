@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imagepicker/MyEncryptionDecryption.dart';
 import 'package:encrypt/encrypt.dart';
-import 'package:encrypt/encrypt_io.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 import 'dart:convert';
 import 'dart:io';
@@ -40,10 +39,6 @@ class _FormdetailState extends State<Formdetail> {
   }
 
   encrypt(Directory dir) async {
-    // final publicKey = await parseKeyFromFile<RSAPublicKey>(
-    //     '/storage/emulated/0/MyEncFolder/test/public.pem');
-    // final privKey = await parseKeyFromFile<RSAPrivateKey>(
-    //     '/storage/emulated/0/MyEncFolder/test/private.pem');
     final publicPem = await rootBundle.loadString('assets/public.pem');
     final publicKey = RSAKeyParser().parse(publicPem) as RSAPublicKey;
 
@@ -76,7 +71,6 @@ class _FormdetailState extends State<Formdetail> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  //initialValue: MyEncryptionDecryption.aeskeyvalue,
                   controller: aesController,
                   autovalidate: true,
                   obscureText: true,
@@ -98,7 +92,6 @@ class _FormdetailState extends State<Formdetail> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  //initialValue: MyEncryptionDecryption.fernetkeyvalue,
                   controller: fernetController,
                   obscureText: true,
                   autovalidate: true,
@@ -120,7 +113,6 @@ class _FormdetailState extends State<Formdetail> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  //initialValue: MyEncryptionDecryption.salsa20keyvalue,
                   controller: salsa20Controller,
                   obscureText: true,
                   autovalidate: true,
@@ -162,8 +154,6 @@ class _FormdetailState extends State<Formdetail> {
               print('no permission');
               requestStoragePermission();
             }
-
-            //Navigator.popAndPushNamed(context, '/MyApp');
             print(MyEncryptionDecryption.fernetkeyvalue);
           }),
     );

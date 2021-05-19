@@ -3,14 +3,12 @@ import 'package:imagepicker/MyEncryptionDecryption.dart';
 import 'package:flutter/material.dart';
 import 'package:imagepicker/saveform.dart';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'dart:typed_data';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'Operations.dart';
 
 class Decrypt extends StatefulWidget {
@@ -75,12 +73,10 @@ class _DecryptState extends State<Decrypt> {
 
     var plainData = await _decryptData(encData);
     String p = await Operations.writeData(plainData, path2 + '/$filename');
-    print("file decrypted successfully");
     Fluttertoast.showToast(msg: 'Decrypted and stored successfully');
   }
 
   _decryptData(encData) {
-    print('decrypting.......');
     print(encData.length);
     encrypt.Encrypted enaes1 = new encrypt.Encrypted(encData);
     var totaltext = MyEncryptionDecryption.aesencrypter

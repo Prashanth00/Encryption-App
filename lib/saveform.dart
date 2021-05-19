@@ -1,12 +1,10 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:encrypt/encrypt_io.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 import 'package:encrypt/encrypt.dart';
 import 'MyEncryptionDecryption.dart';
@@ -38,7 +36,6 @@ class _SaveFormState extends State<SaveForm> {
       List<int> encData =
           await Operations.readData('/storage/emulated/0/MyEncFolder/pass.rsa');
       print(encData);
-
       var plainData = await _decryptData(encData);
     } else {
       print('no permission');
@@ -47,10 +44,6 @@ class _SaveFormState extends State<SaveForm> {
   }
 
   _decryptData(encData) async {
-    // final publicKey = await parseKeyFromFile<RSAPublicKey>(
-    //     '/storage/emulated/0/MyEncFolder/test/public.pem');
-    // final privKey = await parseKeyFromFile<RSAPrivateKey>(
-    //     '/storage/emulated/0/MyEncFolder/test/private.pem');
     final publicPem = await rootBundle.loadString('assets/public.pem');
     final publicKey = RSAKeyParser().parse(publicPem) as RSAPublicKey;
 
@@ -85,10 +78,6 @@ class _SaveFormState extends State<SaveForm> {
   }
 
   encrypt(Directory dir) async {
-    //final publicKey = await parseKeyFromFile<RSAPublicKey>(
-    //  '/storage/emulated/0/MyEncFolder/test/public.pem');
-    //final privKey = await parseKeyFromFile<RSAPrivateKey>(
-    //  '/storage/emulated/0/MyEncFolder/test/private.pem');
     final publicPem = await rootBundle.loadString('assets/public.pem');
     final publicKey = RSAKeyParser().parse(publicPem) as RSAPublicKey;
 
@@ -103,12 +92,10 @@ class _SaveFormState extends State<SaveForm> {
     var bytestotaltext = utf8.encode(total);
     var totalenc = rsaencrypter.encryptBytes(bytestotaltext);
     String p1 = await _writeData(totalenc.bytes, dir.path + '/pass.rsa');
-    print("Password written successfully");
     Fluttertoast.showToast(msg: 'Password changed');
   }
 
   Future<String> _writeData(dataToWrite, fileNameWithPath) async {
-    print("writing data");
     File f = File(fileNameWithPath);
     await f.writeAsBytes(dataToWrite);
     return f.absolute.toString();
@@ -127,7 +114,6 @@ class _SaveFormState extends State<SaveForm> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  //initialValue: MyEncryptionDecryption.aeskeyvalue,
                   controller: aesController,
                   autovalidate: true,
                   obscureText: true,
@@ -149,7 +135,6 @@ class _SaveFormState extends State<SaveForm> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  //initialValue: MyEncryptionDecryption.fernetkeyvalue,
                   controller: fernetController,
                   obscureText: true,
                   autovalidate: true,
@@ -171,7 +156,6 @@ class _SaveFormState extends State<SaveForm> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  //initialValue: MyEncryptionDecryption.salsa20keyvalue,
                   controller: salsa20Controller,
                   obscureText: true,
                   autovalidate: true,
@@ -209,8 +193,6 @@ class _SaveFormState extends State<SaveForm> {
                                 fernetController.text;
                             MyEncryptionDecryption.salsa20keyvalue =
                                 salsa20Controller.text;
-
-                            //globals.firsttime = false;
                           });
                           encrypt(d);
                           Navigator.popAndPushNamed(context, '/MyApp');
@@ -219,8 +201,6 @@ class _SaveFormState extends State<SaveForm> {
                         print('no permission');
                         requestStoragePermission();
                       }
-
-                      //Navigator.popAndPushNamed(context, '/MyApp');
                       print(MyEncryptionDecryption.fernetkeyvalue);
                     },
                     color: Colors.blue,

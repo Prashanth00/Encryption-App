@@ -18,6 +18,9 @@ class MyEncryptionDecryption {
   static final ivsalsa = encrypt.IV.fromLength(8);
   static final salsaencrypter = encrypt.Encrypter(encrypt.Salsa20(keysalsa));
 
+  //Encryptor list
   static List enclist = [aesencrypter, fernetencrypter, salsaencrypter];
+
+  //IV list
   static List ivlist = [aesiv, null, ivsalsa];
 }
