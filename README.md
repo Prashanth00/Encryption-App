@@ -1,16 +1,25 @@
-# imagepicker
+# Encryptor App
 
-A new Flutter project.
+Introduction:
+===============
+        A simple encryption app to encrypt user data in android mobile phone. Hybrid encryption is used.
+The data to be encrypted is split into three parts and encrypted with algorithms.
 
-## Getting Started
+Algorithms used:
+===============
 
-This project is a starting point for a Flutter application.
+Symmetric algorithms:
+--------------------
+        1.AES
+        2.Salsa20
+        3.Fernet
 
-A few resources to get you started if this is your first Flutter project:
+Asymmetric algorithm:
+--------------------
+        RSA algorithm(for encryption of provate keys)        
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Feature:
+===============
+        The order of encryption of the algorithms are randomized.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](images/encryptor.png)
