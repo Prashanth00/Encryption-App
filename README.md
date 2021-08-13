@@ -24,7 +24,6 @@ The order of encryption of the algorithms are randomized.
 
 Application Guide:
 ==================
-<!-----![](images/encryptor.png)--->
 1.The <b>encryptor page</b> is used to encrypt user data<br>
 <img src="images/encryptor.png" alt="drawing" width="280" height="400"/><br>
 2.The <b>decryptor page</b> is to decrypt the encrypted data<br><br>

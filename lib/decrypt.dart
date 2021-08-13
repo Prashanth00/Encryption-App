@@ -77,63 +77,7 @@ class _DecryptState extends State<Decrypt> {
   }
 
   _decryptData(encData) {
-    print(encData.length);
-    encrypt.Encrypted enaes1 = new encrypt.Encrypted(encData);
-    var totaltext = MyEncryptionDecryption.aesencrypter
-        .decryptBytes(enaes1, iv: MyEncryptionDecryption.aesiv);
-    print(totaltext.runtimeType);
-    String fulltext = utf8.decode(totaltext);
-    String stringtotaltext = fulltext.substring(0, fulltext.length - 3);
-
-    String num = fulltext.substring(fulltext.length - 3);
-    int v = int.parse(num[0]);
-    int d = int.parse(num[1]);
-    int c = int.parse(num[2]);
-    print(stringtotaltext);
-    var listconv1, listconv2, listconv3;
-    List<int> dec1list = [], dec2list = [], dec3list = [];
-    String dec1string,
-        dec2string,
-        dec3string,
-        dec1string1,
-        dec2string1,
-        dec3string1;
-    dec1string = stringtotaltext.substring(0, stringtotaltext.indexOf('f'));
-    dec1string1 = dec1string.substring(1, dec1string.length - 1);
-    listconv1 = dec1string1.split(',');
-    for (int w = 0; w < listconv1.length; w++) {
-      var o = int.parse(listconv1[w]);
-      dec1list.add(o);
-    }
-    dec2string = stringtotaltext.substring(
-        stringtotaltext.indexOf('f') + 1, stringtotaltext.indexOf('s'));
-    dec2string1 = dec2string.substring(1, dec2string.length - 1);
-    listconv2 = dec2string1.split(',');
-    for (int w = 0; w < listconv2.length; w++) {
-      var o = int.parse(listconv2[w]);
-      dec2list.add(o);
-    }
-    dec3string = stringtotaltext.substring(stringtotaltext.indexOf('s') + 1);
-    dec3string1 = dec3string.substring(1, dec3string.length - 1);
-    listconv3 = dec3string1.split(',');
-    for (int w = 0; w < listconv3.length; w++) {
-      var o = int.parse(listconv3[w]);
-      dec3list.add(o);
-    }
-
-    Uint8List dec1data = Uint8List.fromList(dec1list);
-    encrypt.Encrypted endec1 = new encrypt.Encrypted(dec1data);
-    var dec1plain = MyEncryptionDecryption.enclist[v]
-        .decryptBytes(endec1, iv: MyEncryptionDecryption.ivlist[v]);
-    Uint8List dec2data = Uint8List.fromList(dec2list);
-    encrypt.Encrypted endec2 = new encrypt.Encrypted(dec2data);
-    var dec2plain = MyEncryptionDecryption.enclist[d]
-        .decryptBytes(endec2, iv: MyEncryptionDecryption.ivlist[d]);
-    Uint8List dec3data = Uint8List.fromList(dec3list);
-    encrypt.Encrypted endec3 = new encrypt.Encrypted(dec3data);
-    var dec3plain = MyEncryptionDecryption.enclist[c]
-        .decryptBytes(endec3, iv: MyEncryptionDecryption.ivlist[c]);
-    return dec1plain + dec2plain + dec3plain; //until this 27.3
+    //DECRYPTION CODE
   }
 
   @override

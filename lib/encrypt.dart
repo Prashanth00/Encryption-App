@@ -102,38 +102,7 @@ class _EncryptState extends State<Encrypt> {
     }
     var bytes = pfile.readAsBytesSync();
 
-    int lengthree = bytes.length ~/ 3;
-
-    alg1encryptedtext = MyEncryptionDecryption.enclist[v].encryptBytes(
-        bytes.sublist(0, lengthree),
-        iv: MyEncryptionDecryption.ivlist[v]);
-    alg2encryptedtext = MyEncryptionDecryption.enclist[d].encryptBytes(
-        bytes.sublist(lengthree, 2 * lengthree),
-        iv: MyEncryptionDecryption.ivlist[d]);
-    alg3encryptedtext = MyEncryptionDecryption.enclist[c].encryptBytes(
-        bytes.sublist(2 * lengthree),
-        iv: MyEncryptionDecryption.ivlist[c]);
-    print("encrypted parts");
-
-    var totaltext = alg1encryptedtext.bytes.toString() +
-        'f' +
-        alg2encryptedtext.bytes.toString() +
-        's' +
-        alg3encryptedtext.bytes.toString() +
-        v.toString() +
-        d.toString() +
-        c.toString();
-
-    print(totaltext);
-    print(totaltext.runtimeType);
-    var bytestotaltext = utf8.encode(totaltext);
-    var totalencryptedtext = MyEncryptionDecryption.aesencrypter
-        .encryptBytes(bytestotaltext, iv: MyEncryptionDecryption.aesiv);
-    print(totalencryptedtext);
-
-    String p1 = await Operations.writeData(
-        totalencryptedtext.bytes, dir.path + '/$filename.aes');
-    Fluttertoast.showToast(msg: 'Encrypted and stored successfully');
+    // ENCRYPTION CODE
   }
 
   @override
